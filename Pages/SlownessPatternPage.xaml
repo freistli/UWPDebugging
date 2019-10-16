@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="UWPDebugging.Pages.SlownessPatternPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDebugging.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <StackPanel VerticalAlignment="Center">
+        <Button Content="Hang 1 Click" Click="Button_Click" Background="Red" Margin="20"></Button>
+        <Button Content="Slow Click" Click="Button_Click_1"  Background="Red" Margin="20"></Button>
+        <Button Content="Hang 2 Click" Click="Button_Click_2" Background="Red" Margin="20"></Button>
+    </StackPanel>
+</Page>
