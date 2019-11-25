@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="UWPDebugging.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDebugging"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:UWPToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <NavigationView x:Name="DebuggingScenario" ItemInvoked="DebuggingScenario_ItemInvoked">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Icon="Contact" Content="1: Call Async Without aWait" Tag="SamplePage1" x:Name="FirstException"/>
+            <NavigationViewItem Icon="Account" Content="2: Call Async With Wait" Tag="SamplePage2" x:Name="SecondException"/>
+            <NavigationViewItem Icon="Add" Content="3: Call Async With aWait" Tag="SamplePage3" x:Name="ThirdException" />
+            <NavigationViewItem Icon="AddFriend" Content="Slowness" Tag="Slowness" x:Name="SlownessPattern" />
+            <NavigationViewItem Icon="Admin" Content="High CPU" Tag="CPU Issue" x:Name="HighCPU"/>
+            <NavigationViewItem Icon="Library" Content="Hot Reload" Tag="Hot Reload" x:Name="HotReload" />
+            <NavigationViewItem Icon="MapPin" Content="High Memory" Tag="HighMemroy" x:Name="HighMemroy"/>
+            <NavigationViewItem Icon="Clock" Content="BackgroundTask" Tag="Backgroundtask" x:Name="OOPBackgroundtask"/>
+        </NavigationView.MenuItems>
+        <Frame x:Name="ContentFrame"/>
+    </NavigationView>
+
+</Page>
