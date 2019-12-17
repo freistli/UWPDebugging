@@ -1,2 +1,2 @@
 # UWPDebugging
-UWP Debugging Scenarios Demostration
+UWP Debugging Scenarios Demostration.
