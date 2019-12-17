@@ -44,6 +44,7 @@ namespace UWPDebugging.Pages
 
             Uri uri = new Uri("ms-appx:///nonexist.txt");
             StorageFile.GetFileFromApplicationUriAsync(uri);
+            ;
         }
     }
 }
