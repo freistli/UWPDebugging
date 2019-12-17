@@ -53,6 +53,8 @@ namespace UWPDebugging.Pages
             _mediaPlayer = new MediaPlayer();
             _mediaPlayer.Source = MediaSource.CreateFromUri(manifestUri);
             _mediaPlayer.Play();
+            StorageFile.GetFileFromApplicationUriAsync(uri);
+            ;
         }
     }
 }
