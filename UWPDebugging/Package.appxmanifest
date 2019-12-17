@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="UWPDebugging"
-    Publisher="CN=freistli@microsoft.com"
-    Version="1.0.21.0" />
+    Name="30812FreistLi.HoloDomino"
+    Publisher="CN=BA4FE9E6-EC51-402C-A8D1-1354151C2AAF"
+    Version="1.0.23.0" />
 
-  <mp:PhoneIdentity PhoneProductId="a5b708d8-1779-4a37-b7cd-33ab0f64a4d1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="2ec589a5-7c5f-43fe-b8f6-b7a69df8d4eb" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>UWPDebugging</DisplayName>
-    <PublisherDisplayName>freistli</PublisherDisplayName>
+    <DisplayName>Holo Domino</DisplayName>
+    <PublisherDisplayName>Freist Li</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="UWPDebugging.App">
       <uap:VisualElements
-        DisplayName="UWPDebugging"
+        DisplayName="Holo Domino"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="UWPDebugging"
