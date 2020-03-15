@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="UWPDebugging.Pages.FileAudioGraph"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDebugging.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:localcontrols="using:UWPDebugging.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ScrollViewer VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="PlayAudioGraph" Content="Play AudioGraph"  Margin="20" Click="PlayAudioGraph_Click"></Button>
+            <Button x:Name="Start" Content="Start"  Margin="20" Click="Start_Click"></Button>
+            <Button x:Name="Stop" Content="Stop" Margin="20" Click="Stop_Click"></Button>
+            <Button x:Name="Loop" Content="Loop" Margin="20" Click="Loop_Click"></Button>
+
+            <localcontrols:ExpandingPanel x:Name="expandingPanel"  Height="950" VerticalAlignment="Top"/>
+            <localcontrols:CompositionPanel x:Name="compositionPanel" Height="950" VerticalAlignment="Top"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

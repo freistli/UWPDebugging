@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
+using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
 
 namespace OOPBackgroundTask
 {
     public sealed class BadgeTask: IBackgroundTask
     {
+        private AppServiceConnection appService;
+
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             var cost = BackgroundWorkCost.CurrentBackgroundWorkCost;
@@ -35,6 +39,7 @@ namespace OOPBackgroundTask
                     var random = new Random(seed);
                     var value = random.Next(1, 50);
                     UpdateTile(value);
+                    StartAppService().GetAwaiter().GetResult();
 
                     Debug.WriteLine("Background task complete: " + value.ToString());
                 }
@@ -94,6 +99,47 @@ namespace OOPBackgroundTask
             updater.Update(notification);
 
             Debug.WriteLine("Background task badge updated: " + value.ToString());
+        }
+
+        private async Task StartAppService()
+        {
+            if (this.appService == null)
+            {
+                this.appService = new AppServiceConnection();
+
+                // Here, we use the app service name defined in the app service 
+                // provider's Package.appxmanifest file in the <Extension> section.
+                this.appService.AppServiceName = "InProcessAppService";
+
+                // Use Windows.ApplicationModel.Package.Current.Id.FamilyName 
+                // within the app service provider to get this value.
+                this.appService.PackageFamilyName = "30812FreistLi.HoloDomino_33rssfepyhexc";
+
+                var status = await this.appService.OpenAsync();
+
+                if (status != AppServiceConnectionStatus.Success)
+                {
+                    Debug.WriteLine("Failed to create");
+                    return;
+                }
+            }
+
+            var message = new ValueSet();
+            message.Add("Request", "StartAnimator"); 
+            AppServiceResponse response = await this.appService.SendMessageAsync(message);
+            string result = "";
+
+            if (response.Status == AppServiceResponseStatus.Success)
+            {
+                // Get the data  that the service sent to us.
+                if (response.Message["Response"] as string == "OK")
+                {
+                    result = response.Message["StatusCode"] as string;
+                }
+            }
+
+            message.Clear();
+          
         }
     }
 }

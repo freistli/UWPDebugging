@@ -4,12 +4,14 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp uap3">
 
   <Identity
     Name="30812FreistLi.HoloDomino"
     Publisher="CN=BA4FE9E6-EC51-402C-A8D1-1354151C2AAF"
-    Version="1.0.23.0" />
+    Version="1.0.42.0" />
 
   <mp:PhoneIdentity PhoneProductId="2ec589a5-7c5f-43fe-b8f6-b7a69df8d4eb" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -48,11 +50,20 @@
             <Task Type="timer"/>
           </BackgroundTasks>
         </Extension>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="holodomino"/>
+        </uap:Extension>
+       <uap:Extension Category="windows.aboveLockScreen" />
+        <uap:Extension Category="windows.appService">
+          <uap:AppService Name="InProcessAppService" />
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
+    <uap3:Capability Name="backgroundMediaPlayback"/>
+    <rescap:Capability Name="broadFileSystemAccess"/>
+    <uap:Capability Name="documentsLibrary"/>
   </Capabilities>
 </Package>

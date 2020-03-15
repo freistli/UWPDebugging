@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using UWPDebugging.Pages;
-
+using Microsoft.UI.Xaml.Controls;
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
 namespace UWPDebugging
@@ -26,14 +26,20 @@ namespace UWPDebugging
         public MainPage()
         {
             this.InitializeComponent();
+            Window.Current.VisibilityChanged += WindowVisibilityChangedEventHandler;
+            Logging.SingleInstance.LogMessage("Main Page Created");
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        void WindowVisibilityChangedEventHandler(System.Object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        {
+            Logging.SingleInstance.LogMessage("WindowVisibilityChangedEventHandler");
+        }
 
-        private void DebuggingScenario_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void DebuggingScenario_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             FrameNavigationOptions navOptions = new FrameNavigationOptions();
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
@@ -72,6 +78,10 @@ namespace UWPDebugging
             else if (itemContainer == OOPBackgroundtask)
             {
                 pageType = typeof(OOPBackgroundtaskPage);
+            }
+            else if (itemContainer == PlayAudioGraph)
+            {
+                pageType = typeof(FileAudioGraph);
             }
             else
                 pageType = typeof(MainPage);

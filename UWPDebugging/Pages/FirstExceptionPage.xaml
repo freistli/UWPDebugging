@@ -8,7 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button Content="Raise Exception" Click="Button_Click" Background="Red"></Button>
-    </Grid>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <x:String x:Key="title">Raise Exception</x:String>
+
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <StackPanel x:Name="myStack" Orientation="Vertical">
+        <Button Content="{StaticResource title}" Click="Button_Click"></Button>
+    </StackPanel>
 </Page>

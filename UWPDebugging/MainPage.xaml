@@ -11,7 +11,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <NavigationView x:Name="DebuggingScenario" ItemInvoked="DebuggingScenario_ItemInvoked">
+    <controls:NavigationView x:Name="DebuggingScenario" ItemInvoked="DebuggingScenario_ItemInvoked" Background="{StaticResource SystemControlChromeMediumLowAcrylicWindowMediumBrush}">
+        <controls:NavigationView.MenuItems>
+            <controls:NavigationViewItem Icon="Contact" Content="1: Call Async Without aWait" Tag="SamplePage1" x:Name="FirstException"/>
+            <controls:NavigationViewItem Icon="Account" Content="2: Call Async With Wait" Tag="SamplePage2" x:Name="SecondException"/>
+            <controls:NavigationViewItem Icon="Add" Content="3: Call Async With aWait" Tag="SamplePage3" x:Name="ThirdException" />
+            <controls:NavigationViewItem Icon="AddFriend" Content="Slowness" Tag="Slowness" x:Name="SlownessPattern" />
+            <controls:NavigationViewItem Icon="Admin" Content="High CPU" Tag="CPU Issue" x:Name="HighCPU"/>
+            <controls:NavigationViewItem Icon="Library" Content="Hot Reload" Tag="Hot Reload" x:Name="HotReload" />
+            <controls:NavigationViewItem Icon="MapPin" Content="High Memory" Tag="HighMemroy" x:Name="HighMemroy"/>
+            <controls:NavigationViewItem Icon="Clock" Content="BackgroundTask" Tag="Backgroundtask" x:Name="OOPBackgroundtask"/>
+            <controls:NavigationViewItem Icon="Clock" Content="Play AudioGraph" Tag="Play AudioGraph" x:Name="PlayAudioGraph"/>
+        </controls:NavigationView.MenuItems>
+        <Frame x:Name="ContentFrame"/>
+    </controls:NavigationView>
+
+    <!--NavigationView x:Name="DebuggingScenario" ItemInvoked="DebuggingScenario_ItemInvoked">
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="Contact" Content="1: Call Async Without aWait" Tag="SamplePage1" x:Name="FirstException"/>
             <NavigationViewItem Icon="Account" Content="2: Call Async With Wait" Tag="SamplePage2" x:Name="SecondException"/>
@@ -22,7 +37,6 @@
             <NavigationViewItem Icon="MapPin" Content="High Memory" Tag="HighMemroy" x:Name="HighMemroy"/>
             <NavigationViewItem Icon="Clock" Content="BackgroundTask" Tag="Backgroundtask" x:Name="OOPBackgroundtask"/>
         </NavigationView.MenuItems>
-        <Frame x:Name="ContentFrame"/>
-    </NavigationView>
-
+        <Frame x:Name="ContentFrame"/-->
+     
 </Page>

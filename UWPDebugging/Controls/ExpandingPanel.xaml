@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="UWPDebugging.Controls.ExpandingPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDebugging"
+    xmlns:localclass="using:UWPDebugging.Classes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <localclass:DoubleToGrid x:Key="DoubleToGrid"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{x:Bind PanelWidth, Mode=OneWay, Converter={StaticResource DoubleToGrid}}"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="{x:Bind PanelHeight, Mode=OneWay, Converter={StaticResource DoubleToGrid}}"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle x:Name="shadowHost" Grid.Row="1" Grid.Column="1" RadiusX="7" RadiusY="7"/>
+        <Grid x:Name="panelContainer" Grid.Row="1" Grid.Column="1" CornerRadius="7" >
+            <Grid x:Name="panel" Background="red"/>
+        </Grid>
+        <!--<StackPanel Grid.Row="0" Grid.Column="1">
+            <StackPanel.Resources>
+                <Storyboard x:Name="myStoryboard">
+                    <DoubleAnimationUsingKeyFrames
+              Storyboard.TargetName="myRectangle"
+              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                        <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
+                        <LinearDoubleKeyFrame Value="1.2" KeyTime="0:0:4"/>
+                        <LinearDoubleKeyFrame Value="2" KeyTime="0:0:5"/>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </StackPanel.Resources>
+        </StackPanel>-->
+    </Grid>
+</UserControl>
