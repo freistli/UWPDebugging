@@ -18,8 +18,15 @@
 
         </ResourceDictionary>
     </Page.Resources>
-    
-    <StackPanel x:Name="myStack" Orientation="Vertical">
-        <Button Content="{StaticResource title}" Click="Button_Click"></Button>
-    </StackPanel>
+    <ScrollViewer VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <WebView Width="480" Height="120"  Source="http://www.largesound.com/ashborytour/sound/brobob.mp3"/>
+
+            <StackPanel x:Name="myStack" Orientation="Vertical" Width="480" Height="480">
+            <Button Content="{StaticResource title}" Click="Button_Click"></Button>
+            <Button Content="Create Medial Player" Click="Button_Click_1"></Button>
+            <Button Content="Load Play Music" Click="Button_Click_2"></Button>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

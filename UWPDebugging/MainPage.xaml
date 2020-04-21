@@ -22,6 +22,7 @@
             <controls:NavigationViewItem Icon="MapPin" Content="High Memory" Tag="HighMemroy" x:Name="HighMemroy"/>
             <controls:NavigationViewItem Icon="Clock" Content="BackgroundTask" Tag="Backgroundtask" x:Name="OOPBackgroundtask"/>
             <controls:NavigationViewItem Icon="Clock" Content="Play AudioGraph" Tag="Play AudioGraph" x:Name="PlayAudioGraph"/>
+            <controls:NavigationViewItem Icon="Clock" Content="UWP Packages" Tag="UWP Packages" x:Name="UWPPackages"/>
         </controls:NavigationView.MenuItems>
         <Frame x:Name="ContentFrame"/>
     </controls:NavigationView>

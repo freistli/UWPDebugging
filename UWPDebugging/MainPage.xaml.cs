@@ -83,6 +83,10 @@ namespace UWPDebugging
             {
                 pageType = typeof(FileAudioGraph);
             }
+            else if (itemContainer == UWPPackages)
+            {
+                pageType = typeof(UWPPackagesPage);
+            }
             else
                 pageType = typeof(MainPage);
 

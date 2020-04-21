@@ -158,15 +158,24 @@ namespace UWPDebugging.Pages
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //By defalut this first exceptin will be handled without throwing
-            //demo.ReadFileBuffer("ms-appx:///nonexist.txt");
-            /*
+
+            demo.ReadFileBuffer("ms-appx:///nonexist.txt");           
             Uri uri = new Uri("ms-appx:///nonexist.txt");
-            await StorageFile.GetFileFromApplicationUriAsync(uri);
-            */
-            System.Uri manifestUri = new Uri("http://amssamples.streaming.mediaservices.windows.net/49b57c87-f5f3-48b3-ba22-c55cfdffa9cb/Sintel.ism/manifest(format=m3u8-aapl)");
+            await StorageFile.GetFileFromApplicationUriAsync(uri);             
+           
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
             _mediaPlayer = new MediaPlayer();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            System.Uri manifestUri = new Uri("http://www.largesound.com/ashborytour/sound/brobob.mp3");
             _mediaPlayer.Source = MediaSource.CreateFromUri(manifestUri);
             _mediaPlayer.Play();
+            _mediaPlayer.Volume = 0;
         }
     }
 }

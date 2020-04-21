@@ -63,7 +63,10 @@
 
   <Capabilities>
     <uap3:Capability Name="backgroundMediaPlayback"/>
+    <rescap:Capability Name="backgroundMediaRecording"/>
     <rescap:Capability Name="broadFileSystemAccess"/>
+    <rescap:Capability Name="packageManagement"/>
     <uap:Capability Name="documentsLibrary"/>
+    <Capability Name="internetClient"/>
   </Capabilities>
 </Package>

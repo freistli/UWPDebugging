@@ -169,6 +169,9 @@
     <Compile Include="Pages\ThirdExceptionPage.xaml.cs">
       <DependentUpon>ThirdExceptionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UWPPackagesPage.xaml.cs">
+      <DependentUpon>UWPPackagesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UWPPackagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

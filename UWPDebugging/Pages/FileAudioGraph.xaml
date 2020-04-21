@@ -17,6 +17,7 @@
 
             <localcontrols:ExpandingPanel x:Name="expandingPanel"  Height="950" VerticalAlignment="Top"/>
             <localcontrols:CompositionPanel x:Name="compositionPanel" Height="950" VerticalAlignment="Top"/>
+            
         </StackPanel>
     </ScrollViewer>
 </Page>
