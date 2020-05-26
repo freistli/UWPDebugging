@@ -80,6 +80,9 @@ namespace UWPDebugging.Controls
             var func = _compositor.CreateLinearEasingFunction();
          
             var animation = _compositor.CreateVector3KeyFrameAnimation();
+            //two steps:
+            //first step: strech to actual UI element size. The UI element is to host this visual. This is controlled by Vector3
+            //second step: back to this visual size. This is controlled by Vector3
             animation.InsertKeyFrame(0.5f, new Vector3((float)this.ActualWidth/240f,(float)this.ActualHeight/48f,1f),func);
             animation.InsertKeyFrame(1.0f, new Vector3(1.0f, 1.0f, 1.0f), func);
             

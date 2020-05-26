@@ -23,6 +23,7 @@
             <controls:NavigationViewItem Icon="Clock" Content="BackgroundTask" Tag="Backgroundtask" x:Name="OOPBackgroundtask"/>
             <controls:NavigationViewItem Icon="Clock" Content="Play AudioGraph" Tag="Play AudioGraph" x:Name="PlayAudioGraph"/>
             <controls:NavigationViewItem Icon="Clock" Content="UWP Packages" Tag="UWP Packages" x:Name="UWPPackages"/>
+            <controls:NavigationViewItem Icon="Clock" Content="Alarm" Tag="Alarm" x:Name="AlarmToast"/>
         </controls:NavigationView.MenuItems>
         <Frame x:Name="ContentFrame"/>
     </controls:NavigationView>

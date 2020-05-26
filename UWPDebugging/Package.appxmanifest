@@ -42,14 +42,18 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"  Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png">
         </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\BadgeLogo.png"/>
       </uap:VisualElements>
       <Extensions>
+        <uap:Extension Category="windows.alarm">
+        </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="OOPBackgroundTask.BadgeTask">
           <BackgroundTasks>
-            <Task Type="pushNotification"/>
             <Task Type="timer"/>
+            <Task Type="pushNotification" />
           </BackgroundTasks>
         </Extension>
+       
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="holodomino"/>
         </uap:Extension>

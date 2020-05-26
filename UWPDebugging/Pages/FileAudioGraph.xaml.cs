@@ -20,7 +20,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media;
 using Windows.Media.Audio;
+using Windows.Media.Capture;
 using Windows.Media.Playback;
 using Windows.Media.Render;
 using Windows.Storage;
@@ -48,6 +50,7 @@ namespace UWPDebugging.Pages
         private AudioGraph graph;
         private AudioFileInputNode fileInput;
         private AudioDeviceOutputNode deviceOutput;
+        AudioStateMonitor gameChatAudioStateMonitor;
 
         MediaPlayer Player ;
 
@@ -58,7 +61,29 @@ namespace UWPDebugging.Pages
         }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await CreateAudioGraph();
+            await CreateAudioGraph(); 
+            string deviceId = Windows.Media.Devices.MediaDevice.GetDefaultAudioCaptureId(Windows.Media.Devices.AudioDeviceRole.Communications);
+            gameChatAudioStateMonitor = AudioStateMonitor.CreateForCaptureMonitoringWithCategoryAndDeviceId(MediaCategory.Other, deviceId);
+            gameChatAudioStateMonitor.SoundLevelChanged += OnSoundLevelChanged;
+
+            LogPath.Text = Logging.LoggingPath;
+         }
+
+        private void OnSoundLevelChanged(AudioStateMonitor sender, object args)
+        {
+            switch (sender.SoundLevel)
+            {
+                case SoundLevel.Full:
+                    Logging.SingleInstance.LogMessage("Microphone Volume is full");
+                    break;
+                case SoundLevel.Muted:
+                    Logging.SingleInstance.LogMessage("Microphone Volume is muted");
+                    break;
+                case SoundLevel.Low:
+                    // Audio capture should never be "ducked", only muted or full volume.
+                    Logging.SingleInstance.LogMessage("Microphone Volume is low");
+                    break;
+            }
         }
 
         public FileAudioGraph()

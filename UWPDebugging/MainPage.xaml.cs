@@ -87,6 +87,10 @@ namespace UWPDebugging
             {
                 pageType = typeof(UWPPackagesPage);
             }
+            else if (itemContainer == AlarmToast)
+            {
+                pageType = typeof(AlarmToast);
+            }
             else
                 pageType = typeof(MainPage);
 

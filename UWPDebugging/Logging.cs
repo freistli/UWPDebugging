@@ -17,6 +17,7 @@ namespace UWPDebugging
         static int instanceCounter = 0;
         private static Logging singleInstance = null;
         private static readonly object lockObject = new object();
+        public static string LoggingPath;
         public Logger logger;
         private Logging()
         {
@@ -45,9 +46,9 @@ namespace UWPDebugging
 
                                 string dpath = Path.GetDirectoryName(storageFile.Path);
 
-                                string logFilePath = dpath + "\\log.txt";
+                                LoggingPath = dpath + "\\log.txt"; 
                                 singleInstance.logger = new LoggerConfiguration()
-                                    .WriteTo.File(logFilePath)
+                                    .WriteTo.File(LoggingPath)
                                     .CreateLogger();
                             }
                         }
