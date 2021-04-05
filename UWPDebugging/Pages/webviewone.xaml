@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="UWPDebugging.Pages.webviewone"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDebugging.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <WebView x:Name="binglink" Source="https://www.bing.com" Grid.Row="0"></WebView>
+        <WebView x:Name="sharplink" Grid.Row="1"></WebView>
+        <WebView x:Name="googlelink" Source="https://www.google.com" Grid.Row="2"></WebView>
+        <Button x:Name="refreshbutton" Grid.Row="3" Click="refreshbutton_Click">Refresh</Button>
+    </Grid>
+</Page>

@@ -24,6 +24,7 @@
             <controls:NavigationViewItem Icon="Clock" Content="Play AudioGraph" Tag="Play AudioGraph" x:Name="PlayAudioGraph"/>
             <controls:NavigationViewItem Icon="Clock" Content="UWP Packages" Tag="UWP Packages" x:Name="UWPPackages"/>
             <controls:NavigationViewItem Icon="Clock" Content="Alarm" Tag="Alarm" x:Name="AlarmToast"/>
+            <controls:NavigationViewItem Icon="Clock" Content="WevViewOne" Tag="Alarm" x:Name="WevViewOne"/>
         </controls:NavigationView.MenuItems>
         <Frame x:Name="ContentFrame"/>
     </controls:NavigationView>

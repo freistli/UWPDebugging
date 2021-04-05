@@ -91,6 +91,10 @@ namespace UWPDebugging
             {
                 pageType = typeof(AlarmToast);
             }
+            else if (itemContainer == WevViewOne)
+            {
+                pageType = typeof(webviewone);
+            }
             else
                 pageType = typeof(MainPage);
 

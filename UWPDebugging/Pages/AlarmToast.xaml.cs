@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace UWPDebugging.Pages
 
         private void ButtonPopUpAlarmNotification_Click(object sender, RoutedEventArgs e)
         {
+            /*
             string textLine1 = "Sample Toast App";
             string textLine2 = "This is a sample message.";
             string contentString =
@@ -48,15 +50,201 @@ namespace UWPDebugging.Pages
                   "</binding>\n" +
                 "</visual>\n" +
               "</toast>\n";
-            XmlDocument content = new Windows.Data.Xml.Dom.XmlDocument();
+                 XmlDocument content = new Windows.Data.Xml.Dom.XmlDocument();
             content.LoadXml(contentString);
+            */
+
+            var toastContent = new ToastContent()
+            {
+                Visual = new ToastVisual()
+                {
+                    BaseUri = new Uri("ms-appx:///Assets/Weather/"),
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+            {
+                new AdaptiveText()
+                {
+                    Text = "Today will be sunny with a high of 63 and a low of 42."
+                },
+                new AdaptiveGroup()
+                {
+                    Children =
+                    {
+                        new AdaptiveSubgroup()
+                        {
+                            HintWeight = 1,
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = "Mon",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = "Mostly Cloudy.png"
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "63°",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "42°",
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        },
+                        new AdaptiveSubgroup()
+                        {
+                            HintWeight = 1,
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = "Tue",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = "Cloudy.png"
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "57°",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "38°",
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        },
+                        new AdaptiveSubgroup()
+                        {
+                            HintWeight = 1,
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = "Wed",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = "Sunny.png"
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "59°",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "43°",
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        },
+                        new AdaptiveSubgroup()
+                        {
+                            HintWeight = 1,
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = "Thu",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = "Sunny.png"
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "62°",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "42°",
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        },
+                        new AdaptiveSubgroup()
+                        {
+                            HintWeight = 1,
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = "Fri",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = "Sunny.png"
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "71°",
+                                    HintAlign = AdaptiveTextAlign.Center
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = "66°",
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                    }
+                }
+            };
+
+            // Create the toast notification
+            var content = toastContent.GetXml();
+
+            // And send the notification
+            //ToastNotificationManager.CreateToastNotifier().Show(toastNotif);       
 
             ToastNotifier toastNotifier =
             ToastNotificationManager.CreateToastNotifier();
             var scheduledToast = new ScheduledToastNotification(
               content, DateTime.Now.AddSeconds(5));
+            scheduledToast.Tag = "TestTag";
             toastNotifier.AddToSchedule(scheduledToast);
+            toastNotifier.ScheduledToastNotificationShowing += ToastNotifier_ScheduledToastNotificationShowing;
+         
+        }
 
+        private void ToastNotifier_ScheduledToastNotificationShowing(ToastNotifier sender, ScheduledToastNotificationShowingEventArgs args)
+        {
+            
+            new ToastContentBuilder()
+                .AddArgument("action", "viewConversation")
+                .AddArgument("conversationId", 9813)
+                .AddText("Andrew sent you a picture")
+                .AddText("Check this out, The Enchantments in Washington!")
+                .Show();
+
+            //args.Cancel = true;
         }
 
         private void ButtonClearAllAlarmNotifications_Click(object sender, RoutedEventArgs e)

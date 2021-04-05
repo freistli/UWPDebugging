@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Microsoft.Win32;
+using Serilog;
 using Serilog.Core;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,38 @@ namespace UWPDebugging
             EnteredBackground += App_EnteredBackground;
             LeavingBackground += App_LeavingBackground;
 
+            Microsoft.Win32.SystemEvents.SessionSwitch += new Microsoft.Win32.SessionSwitchEventHandler(SystemEvents_SessionSwitch);
+            SystemEvents.PowerModeChanged += OnPowerChange;
             Logging.SingleInstance.LogMessage("InitializeComponent");
+        }
+
+        private void OnPowerChange(object sender, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Resume:
+                    Logging.SingleInstance.LogMessage($"System is resumed at {DateTime.Now}");
+                    break;
+                case PowerModes.Suspend:
+                    Logging.SingleInstance.LogMessage($"System is suspended at {DateTime.Now}");
+                    break;
+            }
+
+        }
+
+        private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            if (e.Reason == SessionSwitchReason.SessionLock)
+            {
+                //I left my desk
+                Logging.SingleInstance.LogMessage($"I left my desk at {DateTime.Now}");
+                 
+            }
+            else if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
+                 Logging.SingleInstance.LogMessage($"I returned to my desk at {DateTime.Now}");
+            }
+
         }
         #region InProcess AppService
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
@@ -106,19 +138,22 @@ namespace UWPDebugging
         #region Check Background
         private void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
-            // Place the application into "background mode" and note the
-            // transition with a flag.
-            ShowToast("Entered background");
-            isInBackgroundMode = true;
+            if (false)
+            {
+                // Place the application into "background mode" and note the
+                // transition with a flag.
+                ShowToast("Entered background");
+                isInBackgroundMode = true;
 
-            // An application may wish to release views and view data
-            // at this point since the UI is no longer visible.
-            //
-            // As a performance optimization, here we note instead that 
-            // the app has entered background mode with a boolean and
-            // defer unloading views until AppMemoryUsageLimitChanging or 
-            // AppMemoryUsageIncreased is raised with an indication that
-            // the application is under memory pressure.
+                // An application may wish to release views and view data
+                // at this point since the UI is no longer visible.
+                //
+                // As a performance optimization, here we note instead that 
+                // the app has entered background mode with a boolean and
+                // defer unloading views until AppMemoryUsageLimitChanging or 
+                // AppMemoryUsageIncreased is raised with an indication that
+                // the application is under memory pressure.
+            }
         }
         /// <summary>
         /// Gets a string describing current memory usage
@@ -157,15 +192,18 @@ namespace UWPDebugging
         /// <param name="e"></param>
         private void App_LeavingBackground(object sender, LeavingBackgroundEventArgs e)
         {
-            // Mark the transition out of background mode.
-            ShowToast("Leaving background");
-            isInBackgroundMode = false;
-
-            // Reastore view content if it was previously unloaded.
-            if (Window.Current.Content == null)
+            if (false)
             {
-                ShowToast("Loading view");
-                //CreateRootFrame(ApplicationExecutionState.Running, string.Empty);
+                // Mark the transition out of background mode.
+                ShowToast("Leaving background");
+                isInBackgroundMode = false;
+
+                // Reastore view content if it was previously unloaded.
+                if (Window.Current.Content == null)
+                {
+                    ShowToast("Loading view");
+                    //CreateRootFrame(ApplicationExecutionState.Running, string.Empty);
+                }
             }
         }
         #endregion

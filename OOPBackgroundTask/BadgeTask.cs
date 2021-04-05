@@ -10,6 +10,9 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
 
+/*
+ * 这是OOP background task, 被修改时间trigger, 然后唤起UWP里的 In Process App Service来进一步通讯
+ */
 namespace OOPBackgroundTask
 {
     public sealed class BadgeTask: IBackgroundTask
